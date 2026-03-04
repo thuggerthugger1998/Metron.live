@@ -1896,12 +1896,17 @@
             /* Problem: disable sticky on mobile, stack both halves */
             .problem-scroll { height: auto; }
             .problem-sticky { position: static; height: auto; padding: var(--section-v) 0; overflow: visible; }
-            .problem__inner { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.5rem; }
-            .problem__left { opacity: 1; transform: none; }
+            .problem__inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.5rem; }
+            /* Break out of subgrid so columns stack cleanly */
+            .problem__left,
+            .problem__right { display: block; grid-row: auto; }
+            .problem__left { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+            .problem__left.visible { opacity: 1; transform: none; }
             .problem__wall { display: none; }
-            .problem__right-content { opacity: 1; transform: none; transition: none; }
+            .problem__right-content { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s; }
+            .problem__right.visible .problem__right-content { opacity: 1; transform: none; }
             .problem__solution-label { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
-            .problem__solution-headline { color: var(--text-primary); font-size: clamp(2.4rem, 5vw, 4rem); }
+            .problem__solution-headline { color: var(--text-primary); font-size: clamp(2.2rem, 6vw, 3.5rem); }
             .problem__solution-body { color: var(--text-secondary); }
 
             .steps-grid { grid-template-columns: 1fr; }
@@ -2727,20 +2732,31 @@
         const problemSolution = document.getElementById('problem-solution');
         const problemWall     = document.getElementById('problem-wall');
         if (problemScroll && problemLeft && problemSolution) {
-            window.addEventListener('scroll', () => {
+            function updateProblem() {
                 const rect     = problemScroll.getBoundingClientRect();
                 const scrolled = -rect.top;
                 const total    = rect.height - window.innerHeight;
-                // Left fires as soon as the section enters the viewport
-                if (rect.top < window.innerHeight * 0.88) {
-                    problemLeft.classList.add('visible');
+                const inView   = rect.top < window.innerHeight * 0.88;
+
+                if (inView) problemLeft.classList.add('visible');
+
+                // No scroll room (mobile / short window): reveal solution on simple viewport entry
+                if (total <= 0) {
+                    const show = rect.top < window.innerHeight * 0.65;
+                    if (problemWall) problemWall.classList.toggle('visible', show);
+                    problemSolution.classList.toggle('visible', show);
+                    return;
                 }
-                if (total <= 0) return;
+
                 const progress = Math.max(0, Math.min(1, scrolled / total));
                 const show = progress >= 0.22;
-                if (problemWall)     problemWall.classList.toggle('visible', show);
+                if (problemWall) problemWall.classList.toggle('visible', show);
                 problemSolution.classList.toggle('visible', show);
-            }, { passive: true });
+            }
+
+            window.addEventListener('scroll', updateProblem, { passive: true });
+            // Run once on load in case section is already in view
+            updateProblem();
         }
 
         // ==========================================
