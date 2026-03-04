@@ -1852,16 +1852,18 @@
 
         @media (max-width: 900px) {
             .hero::after {
-                background: rgba(255,255,255,0.82);
+                background: rgba(255,255,255,0.88);
             }
 
             .hero__grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
             .hero__phone-wrap {
                 order: -1;
+                display: flex;
+                justify-content: center;
             }
 
             .hero__sub {
@@ -1876,73 +1878,75 @@
 
             /* Features: disable sticky scroll on mobile, stack cards */
             .features-scroll { height: auto; }
-            .features-sticky { position: static; height: auto; flex-direction: column; padding: var(--section-v) 0; }
-            .features-sticky__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+            .features-sticky { position: static; height: auto; flex-direction: column; padding: var(--section-v) 0; overflow: visible; }
+            .features-sticky__inner { grid-template-columns: 1fr; gap: 2rem; }
             .features-active__num { font-size: clamp(3.5rem, 12vw, 5rem); }
             .features-active__name { font-size: clamp(1.2rem, 5vw, 1.5rem); }
-            .features-panel { min-height: 0; }
+            .features-panel { height: auto; min-height: 0; display: flex; flex-direction: column; gap: 1.5rem; }
             .feature-card {
                 position: relative;
                 inset: auto;
-                opacity: 1;
-                transform: none;
+                opacity: 1 !important;
+                transform: none !important;
                 pointer-events: auto;
-                margin-bottom: 1rem;
+                margin-bottom: 0;
             }
+            .features-progress { display: none; }
+
             /* Problem: disable sticky on mobile, stack both halves */
             .problem-scroll { height: auto; }
-            .problem-sticky { position: static; height: auto; padding: var(--section-v) 0; }
-            .problem__inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.5rem; }
+            .problem-sticky { position: static; height: auto; padding: var(--section-v) 0; overflow: visible; }
+            .problem__inner { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.5rem; }
             .problem__left { opacity: 1; transform: none; }
             .problem__wall { display: none; }
             .problem__right-content { opacity: 1; transform: none; transition: none; }
             .problem__solution-label { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
             .problem__solution-headline { color: var(--text-primary); font-size: clamp(2.4rem, 5vw, 4rem); }
             .problem__solution-body { color: var(--text-secondary); }
-            .problem__solution-body { color: var(--text-secondary); }
 
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
+            .steps-grid { grid-template-columns: 1fr; }
+            .steps-connector { display: none; }
 
+            .testimonial-feature { padding: 60px 0; }
         }
 
         @media (max-width: 768px) {
+            body { overflow-x: hidden; }
+
             .nav__links { display: none; }
             .nav__cta   { display: none; }
             .nav__hamburger { display: flex; }
 
-            .stats-bar__divider { display: none; }
+            .hero {
+                padding-top: calc(var(--nav-height) + 2rem);
+                padding-bottom: 3rem;
+            }
+            .hero__form { max-width: 100%; flex-direction: column; }
+            /* Prevent iOS auto-zoom on input focus */
+            .hero__form-input,
+            .beta-form__input { font-size: 16px; }
 
+            .stats-bar__divider { display: none; }
             .stats-bar__inner {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem 0.5rem;
             }
-
             .stats-bar__item { padding: 0; }
 
-            .hero__form {
-                flex-direction: column;
-            }
+            .beta-form { flex-direction: column; }
 
-            .beta-form {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                justify-content: center;
-            }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
         }
 
         @media (max-width: 480px) {
             .hero__trust { flex-direction: column; gap: 0.4rem; }
             .hero__trust .sep { display: none; }
+
+            .features-headline { font-size: clamp(2rem, 8vw, 2.8rem); }
+            .testimonial-feature { padding: 48px 0; }
+            .testimonial-feature__heading { font-size: clamp(1.8rem, 7vw, 2.8rem); }
         }
     </style>
 </head>
@@ -2803,6 +2807,7 @@
             }
 
             window.addEventListener('scroll', () => {
+                if (window.innerWidth <= 900) return;
                 const rect     = featuresScroll.getBoundingClientRect();
                 const scrolled = -rect.top;
                 const total    = rect.height - window.innerHeight;
