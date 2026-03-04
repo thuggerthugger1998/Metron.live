@@ -934,13 +934,13 @@
             flex-direction: column;
             justify-content: flex-start;
             padding: 1.5rem 0 1rem;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .features-sticky__inner {
             display: grid;
-            grid-template-columns: 480px 1fr;
-            gap: 4rem;
+            grid-template-columns: clamp(280px, 38%, 480px) 1fr;
+            gap: clamp(2rem, 4vw, 4rem);
             align-items: start;
             width: 100%;
         }
@@ -961,7 +961,6 @@
             line-height: 1.0;
             color: var(--text-primary);
             margin: 0 0 2rem;
-            white-space: nowrap;
             text-align: center;
         }
 
@@ -1576,12 +1575,29 @@
            BETA CTA
         ========================================== */
         .beta-section {
-            background: linear-gradient(160deg, #fde8d4 0%, #f9c9a0 40%, #f5b07a 100%);
+            position: relative;
             padding: var(--section-v) 1.5rem;
             text-align: center;
+            overflow: hidden;
         }
-
+        .beta-section::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: url('/images/metron_background.png') center center / cover no-repeat;
+            filter: blur(2px) saturate(1.15);
+            z-index: 0;
+        }
+        .beta-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.06);
+            z-index: 0;
+        }
         .beta-section__inner {
+            position: relative;
+            z-index: 1;
             max-width: 520px;
             margin: 0 auto;
         }
@@ -1591,7 +1607,7 @@
             font-weight: 700;
             letter-spacing: 0.07em;
             text-transform: uppercase;
-            color: #000;
+            color: rgba(255,255,255,0.75);
             display: block;
             margin-bottom: 1rem;
         }
@@ -1601,13 +1617,14 @@
             font-weight: 800;
             letter-spacing: -0.04em;
             line-height: 1.05;
-            color: #000;
+            color: #fff;
             margin-bottom: 1.25rem;
         }
 
         .beta-section__sub {
-            color: rgba(0,0,0,0.7);
+            color: rgba(255,255,255,0.85);
             font-size: 1rem;
+            font-weight: 600;
             margin-bottom: 2rem;
         }
 
@@ -1622,7 +1639,8 @@
 
         .beta-section__value li {
             font-size: 0.9rem;
-            color: rgba(0,0,0,0.7);
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -1634,7 +1652,7 @@
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: var(--accent);
+            background: rgba(255,255,255,0.8);
             flex-shrink: 0;
         }
 
@@ -1670,7 +1688,7 @@
 
         .beta-disclaimer {
             font-size: 0.78rem;
-            color: rgba(0,0,0,0.5);
+            color: rgba(255,255,255,0.6);
         }
 
         .beta-success {
@@ -1825,18 +1843,27 @@
         /* ==========================================
            RESPONSIVE
         ========================================== */
+        @media (max-width: 1100px) {
+            #features .container { padding: 0 1.5rem; }
+            .features-active__num { font-size: clamp(4rem, 8vw, 7rem); }
+            .features-active__desc { font-size: 1rem; }
+            .features-panel { height: clamp(400px, 55vh, 560px); }
+        }
+
         @media (max-width: 900px) {
             .hero::after {
-                background: rgba(255,255,255,0.82);
+                background: rgba(255,255,255,0.88);
             }
 
             .hero__grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
             .hero__phone-wrap {
                 order: -1;
+                display: flex;
+                justify-content: center;
             }
 
             .hero__sub {
@@ -1849,75 +1876,123 @@
                 display: none;
             }
 
-            /* Features: disable sticky scroll on mobile, stack cards */
-            .features-scroll { height: auto; }
-            .features-sticky { position: static; height: auto; flex-direction: column; padding: var(--section-v) 0; }
-            .features-sticky__inner { grid-template-columns: 1fr; gap: 1.5rem; }
-            .features-active__num { font-size: clamp(3.5rem, 12vw, 5rem); }
-            .features-active__name { font-size: clamp(1.2rem, 5vw, 1.5rem); }
-            .features-panel { min-height: 0; }
-            .feature-card {
-                position: relative;
-                inset: auto;
-                opacity: 1;
-                transform: none;
-                pointer-events: auto;
-                margin-bottom: 1rem;
-            }
-            /* Problem: disable sticky on mobile, stack both halves */
-            .problem-scroll { height: auto; }
-            .problem-sticky { position: static; height: auto; padding: var(--section-v) 0; }
-            .problem__inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.5rem; }
-            .problem__left { opacity: 1; transform: none; }
-            .problem__wall { display: none; }
-            .problem__right-content { opacity: 1; transform: none; transition: none; }
-            .problem__solution-label { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
-            .problem__solution-headline { color: var(--text-primary); font-size: clamp(2.4rem, 5vw, 4rem); }
-            .problem__solution-body { color: var(--text-secondary); }
-            .problem__solution-body { color: var(--text-secondary); }
-
-            .steps-grid {
+            /* Features: keep sticky scroll active — single column layout */
+            .features-scroll { height: 300vh; }
+            .features-sticky { position: sticky; top: var(--nav-height); height: calc(100vh - var(--nav-height)); padding: 0.5rem 0; overflow: hidden; }
+            /* Explicit row heights so text and phone never overlap */
+            .features-sticky__inner {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto auto clamp(330px, 46vh, 420px);
+                gap: 0.5rem;
+                height: calc(100vh - var(--nav-height) - 1rem);
+                align-items: start;
             }
+            .features-headline { font-size: clamp(1.7rem, 5.5vw, 2.2rem); margin-bottom: 0.4rem; }
+            .features-active { margin-bottom: 0.15rem; }
+            .features-active__num { font-size: clamp(2.6rem, 9vw, 3.8rem); }
+            .features-active__name { font-size: clamp(1rem, 3.5vw, 1.2rem); margin-top: 0.3rem; }
+            .features-active__desc { font-size: 0.88rem; line-height: 1.5; margin-top: 0.4rem; }
+            .features-active__bullets { margin-top: 0.35rem; margin-bottom: 0; }
+            .features-active__bullets li { font-size: 0.82rem; margin-bottom: 0.2rem; }
+            .features-progress { position: static; bottom: auto; margin-top: 0.35rem; }
+            /* Panel fills its grid row; cards fill panel absolutely */
+            .features-panel { height: 100%; min-height: 0; }
+            .feature-card { position: absolute; inset: 0; margin-bottom: 0; }
+            /* Scale phone down for mobile */
+            .features-panel .mini-phone { width: 155px; border-radius: 26px; padding: 8px; }
+            .features-panel .mini-phone-inner { border-radius: 20px; padding: 12px 12px 18px; min-height: 300px; }
+            .features-panel .mini-notch { width: 60px; height: 16px; margin-bottom: 10px; }
+            .features-panel .mini-gen-title { font-size: 13px; }
+            .features-panel .mini-gen-sub { font-size: 10px; margin-bottom: 12px; }
+            .features-panel .mini-phase-circle { width: 50px; height: 50px; font-size: 20px; margin-bottom: 8px; }
+            .features-panel .mini-phase-name { font-size: 11px; margin-bottom: 8px; }
+            .features-panel .mini-phases { gap: 4px; }
+            .features-panel .mini-phase { font-size: 10px; padding: 4px 8px; }
+            .features-panel .mini-adapt-header { margin-bottom: 10px; }
+            .features-panel .mini-adapt-title { font-size: 10px; }
+            .features-panel .mini-live { font-size: 9px; }
+            .features-panel .mini-adapt-list { gap: 6px; }
+            .features-panel .mini-adapt-row { font-size: 10px; padding: 6px 8px; }
+            .features-panel .mini-chat-header { gap: 8px; margin-bottom: 12px; }
+            .features-panel .mini-avatar { width: 26px; height: 26px; font-size: 11px; }
+            .features-panel .mini-chat-name { font-size: 12px; }
+            .features-panel .mini-chat-messages { gap: 8px; }
+            .features-panel .mini-chat-msg { font-size: 10px; padding: 7px 10px; }
+            .features-panel .feature-card[data-idx="0"] .mini-phase-circle { width: 42px; height: 42px; font-size: 18px; }
 
+            /* Problem: disable sticky on mobile, horizontal slide-in */
+            .problem-scroll { height: auto; }
+            .problem-sticky { position: static; height: auto; padding: var(--section-v) 0; overflow: hidden; }
+            .problem__wall { display: none; }
+            .problem__inner { grid-template-columns: 1fr; gap: 1.75rem; padding: 0 1.5rem; }
+            /* Break out of subgrid */
+            .problem__left,
+            .problem__right { display: block; grid-row: auto; }
+            /* Problem slides in from left */
+            .problem__left {
+                opacity: 0;
+                transform: translateX(-36px);
+                transition: opacity 0.55s ease, transform 0.55s ease;
+            }
+            .problem__left.visible { opacity: 1; transform: none; }
+            /* Solution slides in from right with orange card */
+            .problem__right {
+                background: var(--accent);
+                border-radius: 16px;
+                padding: 2rem;
+                opacity: 0;
+                transform: translateX(36px);
+                transition: opacity 0.55s ease 0.1s, transform 0.55s ease 0.1s;
+            }
+            .problem__right.visible { opacity: 1; transform: none; }
+            .problem__right-content { opacity: 1; transform: none; transition: none; }
+            .problem__solution-label { color: rgba(255,255,255,0.75); }
+            .problem__solution-headline { color: #fff; font-size: clamp(1.8rem, 6vw, 2.8rem); }
+            .problem__solution-body { color: rgba(255,255,255,0.88); }
+
+            .steps-grid { grid-template-columns: 1fr; }
+            .steps-connector { display: none; }
+
+            .testimonial-feature { padding: 60px 0; }
         }
 
         @media (max-width: 768px) {
+            body { overflow-x: hidden; }
+
             .nav__links { display: none; }
             .nav__cta   { display: none; }
             .nav__hamburger { display: flex; }
 
-            .stats-bar__divider { display: none; }
+            .hero {
+                padding-top: calc(var(--nav-height) + 2rem);
+                padding-bottom: 3rem;
+            }
+            .hero__form { max-width: 100%; flex-direction: column; }
+            /* Prevent iOS auto-zoom on input focus */
+            .hero__form-input,
+            .beta-form__input { font-size: 16px; }
 
+            .stats-bar__divider { display: none; }
             .stats-bar__inner {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem 0.5rem;
             }
-
             .stats-bar__item { padding: 0; }
 
-            .hero__form {
-                flex-direction: column;
-            }
+            .beta-form { flex-direction: column; }
 
-            .beta-form {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                justify-content: center;
-            }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
         }
 
         @media (max-width: 480px) {
             .hero__trust { flex-direction: column; gap: 0.4rem; }
             .hero__trust .sep { display: none; }
+
+            .features-headline { font-size: clamp(2rem, 8vw, 2.8rem); }
+            .testimonial-feature { padding: 48px 0; }
+            .testimonial-feature__heading { font-size: clamp(1.8rem, 7vw, 2.8rem); }
         }
     </style>
 </head>
@@ -2603,16 +2678,10 @@
         }
 
         function closeAnswer(el) {
-            // Pin to current height so transition has a start point
             el.style.maxHeight = el.scrollHeight + 'px';
-            // Force layout, then animate to 0
             el.getBoundingClientRect();
+            el.classList.remove('open');
             el.style.maxHeight = '0';
-            el.addEventListener('transitionend', function handler(e) {
-                if (e.propertyName !== 'max-height') return;
-                el.classList.remove('open');
-                el.removeEventListener('transitionend', handler);
-            });
         }
 
         faqItems.forEach(item => {
@@ -2704,20 +2773,34 @@
         const problemSolution = document.getElementById('problem-solution');
         const problemWall     = document.getElementById('problem-wall');
         if (problemScroll && problemLeft && problemSolution) {
-            window.addEventListener('scroll', () => {
+            function updateProblem() {
                 const rect     = problemScroll.getBoundingClientRect();
-                const scrolled = -rect.top;
                 const total    = rect.height - window.innerHeight;
-                // Left fires as soon as the section enters the viewport
-                if (rect.top < window.innerHeight * 0.88) {
+
+                // Left: reveal when it enters the viewport
+                if (problemLeft.getBoundingClientRect().top < window.innerHeight * 0.88) {
                     problemLeft.classList.add('visible');
                 }
-                if (total <= 0) return;
+
+                if (total <= 0) {
+                    // Mobile / condensed: each card triggers on its own viewport position
+                    const solRect = problemSolution.getBoundingClientRect();
+                    const show    = solRect.top < window.innerHeight * 0.88;
+                    if (problemWall) problemWall.classList.toggle('visible', show);
+                    problemSolution.classList.toggle('visible', show);
+                    return;
+                }
+
+                // Desktop: scroll-progress driven
+                const scrolled = -rect.top;
                 const progress = Math.max(0, Math.min(1, scrolled / total));
                 const show = progress >= 0.22;
-                if (problemWall)     problemWall.classList.toggle('visible', show);
+                if (problemWall) problemWall.classList.toggle('visible', show);
                 problemSolution.classList.toggle('visible', show);
-            }, { passive: true });
+            }
+
+            window.addEventListener('scroll', updateProblem, { passive: true });
+            updateProblem();
         }
 
         // ==========================================
