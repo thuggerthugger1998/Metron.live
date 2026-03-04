@@ -1847,7 +1847,7 @@
             #features .container { padding: 0 1.5rem; }
             .features-active__num { font-size: clamp(4rem, 8vw, 7rem); }
             .features-active__desc { font-size: 1rem; }
-            .features-panel { height: 520px; }
+            .features-panel { height: clamp(400px, 55vh, 560px); }
         }
 
         @media (max-width: 900px) {
@@ -1876,22 +1876,21 @@
                 display: none;
             }
 
-            /* Features: disable sticky scroll on mobile, stack cards */
-            .features-scroll { height: auto; }
-            .features-sticky { position: static; height: auto; flex-direction: column; padding: var(--section-v) 0; overflow: visible; }
-            .features-sticky__inner { grid-template-columns: 1fr; gap: 2rem; }
-            .features-active__num { font-size: clamp(3.5rem, 12vw, 5rem); }
-            .features-active__name { font-size: clamp(1.2rem, 5vw, 1.5rem); }
-            .features-panel { height: auto; min-height: 0; display: flex; flex-direction: column; gap: 1.5rem; }
-            .feature-card {
-                position: relative;
-                inset: auto;
-                opacity: 1 !important;
-                transform: none !important;
-                pointer-events: auto;
-                margin-bottom: 0;
-            }
-            .features-progress { display: none; }
+            /* Features: keep sticky scroll active — single column layout */
+            .features-scroll { height: 300vh; }
+            .features-sticky { position: sticky; top: var(--nav-height); height: calc(100vh - var(--nav-height)); padding: 0.75rem 0 0; overflow: hidden; }
+            .features-sticky__inner { grid-template-columns: 1fr; gap: 0.5rem; }
+            .features-headline { font-size: clamp(1.8rem, 6vw, 2.6rem); margin-bottom: 0.75rem; }
+            .features-active { margin-bottom: 0.25rem; }
+            .features-active__num { font-size: clamp(2.8rem, 10vw, 4rem); }
+            .features-active__name { font-size: clamp(1rem, 4vw, 1.25rem); margin-top: 0.3rem; }
+            .features-active__desc { font-size: 0.875rem; line-height: 1.5; margin-top: 0.5rem; }
+            .features-active__bullets { margin-top: 0.4rem; margin-bottom: 0.5rem; }
+            .features-active__bullets li { font-size: 0.8rem; margin-bottom: 0.2rem; }
+            .features-progress { position: static; bottom: auto; margin-top: 0.25rem; }
+            .features-panel { height: clamp(200px, 30vh, 300px); }
+            /* Keep cards as absolute — restore from any previous override */
+            .feature-card { position: absolute; inset: 0; margin-bottom: 0; }
 
             /* Problem: disable sticky on mobile, horizontal slide-in */
             .problem-scroll { height: auto; }
@@ -2840,7 +2839,6 @@
             }
 
             window.addEventListener('scroll', () => {
-                if (window.innerWidth <= 900) return;
                 const rect     = featuresScroll.getBoundingClientRect();
                 const scrolled = -rect.top;
                 const total    = rect.height - window.innerHeight;
