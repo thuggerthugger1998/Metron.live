@@ -2128,10 +2128,10 @@
             .video-banner__hero-grid {
                 position: relative;
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 0.8rem;
                 align-items: start !important;
-                padding-top: calc(var(--nav-height) + 1.5rem);
-                padding-bottom: 2rem;
+                padding-top: calc(var(--nav-height) + 0.5rem);
+                padding-bottom: 1rem;
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
             }
@@ -2163,11 +2163,18 @@
             }
 
             .video-banner__headline {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: clamp(1.6rem, 7vw, 2.4rem);
+                margin-bottom: 0.5rem;
             }
 
             .video-banner__sub-text {
-                font-size: 0.9rem;
+                font-size: 0.82rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.4;
+            }
+
+            .video-banner__tagline {
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
             }
 
             .hero {
