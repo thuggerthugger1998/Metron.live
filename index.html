@@ -2015,11 +2015,21 @@
                 gap: 2rem;
                 padding-top: calc(var(--nav-height) + 2rem);
                 padding-bottom: 2rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
 
             .hero__phone-wrap {
                 display: flex;
                 justify-content: center;
+            }
+
+            .hero__phone { width: 220px; }
+
+            .hero__badge--hrv,
+            .hero__badge--adjusted,
+            .hero__badge--recovery {
+                display: none;
             }
 
             .video-banner__tagline-corner {
@@ -2028,8 +2038,12 @@
                 text-align: center;
             }
 
-            .video-banner__form {
-                flex-direction: column;
+            .video-banner__headline {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
+            .video-banner__sub-text {
+                font-size: 0.9rem;
             }
 
             .hero {
