@@ -2127,19 +2127,15 @@
 
             .video-banner__hero-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                padding-top: calc(var(--nav-height) + 2rem);
+                gap: 1.5rem;
+                align-items: start !important;
+                padding-top: calc(var(--nav-height) + 1.5rem);
                 padding-bottom: 2rem;
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
             }
 
-            .hero__phone-wrap {
-                display: flex;
-                justify-content: center;
-            }
-
-            .hero__phone { width: 220px; }
+            .hero__phone { width: 200px; }
 
             .hero__badge--hrv,
             .hero__badge--adjusted,
@@ -2148,8 +2144,10 @@
             }
 
             .hero__phone-wrap {
+                display: flex;
                 justify-content: flex-end !important;
                 padding-right: 1rem;
+                margin-top: auto;
             }
 
             .video-banner__tagline-corner {
@@ -2159,7 +2157,7 @@
             .video-banner__tagline-mobile {
                 display: block;
                 text-align: right;
-                padding: 0 1.5rem 0 0;
+                padding: 0 1.5rem 0.5rem 0;
             }
 
             .video-banner__headline {
