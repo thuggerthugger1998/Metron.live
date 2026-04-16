@@ -296,19 +296,40 @@
             z-index: 100;
         }
 
-        /* Over the video: white text, transparent bg */
-        .nav--over-video .nav__logo-icon path { fill: white; }
-        .nav--over-video .nav__logo-text { color: white; -webkit-text-fill-color: white; }
-        .nav--over-video .nav__link { color: rgba(255,255,255,0.85); }
-        .nav--over-video .nav__link:hover { color: white; }
-        .nav--over-video .nav__hamburger span { background: white; }
+        /* Marble text fill utility */
+        .marble-fill {
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Over the video: marble text, transparent bg */
+        .nav--over-video .nav__logo-icon path { fill: url(#marblePattern); }
+        .nav--over-video .nav__logo-text {
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav--over-video .nav__link {
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 1;
+        }
+        .nav--over-video .nav__link:hover { opacity: 0.8; }
+        .nav--over-video .nav__hamburger span { background: #e8ddd0; }
         .nav--over-video .nav__cta {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.3);
-            color: white;
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-color: rgba(232,221,208,0.4);
         }
         .nav--over-video .nav__cta:hover {
-            background: rgba(255,255,255,0.25);
+            opacity: 0.8;
         }
 
         .nav.scrolled {
@@ -356,12 +377,17 @@
             position: relative;
             top: -0.6em;
             opacity: 1;
-            color: white;
-            -webkit-text-fill-color: white;
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-left: 0.05em;
         }
 
         .nav.scrolled .nav__logo-tm {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
             color: var(--accent);
             -webkit-text-fill-color: var(--accent);
         }
@@ -377,7 +403,10 @@
             font-size: 0.42rem;
             font-weight: 700;
             letter-spacing: 0.01em;
-            color: white;
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-top: 0.02rem;
             transition: color var(--ease);
         }
@@ -554,7 +583,11 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.8rem;
             font-weight: 600;
-            color: rgba(255,255,255,0.6);
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.7;
             letter-spacing: 0.06em;
             text-transform: uppercase;
             margin-bottom: 1.25rem;
@@ -573,9 +606,12 @@
             font-weight: 700;
             line-height: 1.05;
             letter-spacing: -0.02em;
-            color: white;
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+            filter: drop-shadow(0 2px 20px rgba(0,0,0,0.3));
         }
 
         .video-banner__headline .text-gradient {
@@ -587,7 +623,11 @@
         .video-banner__sub-text {
             font-family: 'Cormorant', serif;
             font-size: 1.3rem;
-            color: rgba(255,255,255,0.7);
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
             line-height: 1.5;
             margin-bottom: 2rem;
             max-width: 520px;
@@ -657,10 +697,13 @@
             font-family: 'Cormorant', serif;
             font-size: clamp(1.8rem, 3.5vw, 3rem);
             font-weight: 700;
-            color: rgba(255,255,255,0.9);
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -0.01em;
             line-height: 1.1;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            filter: drop-shadow(0 2px 15px rgba(0,0,0,0.3));
             margin-bottom: 0.4rem;
             white-space: nowrap;
         }
@@ -668,10 +711,13 @@
         .video-banner__sub {
             font-family: 'Cormorant', serif;
             font-size: clamp(1rem, 1.5vw, 1.3rem);
-            color: rgba(255,255,255,0.6);
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.7;
             font-weight: 400;
             font-style: italic;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
         }
 
         /* ==========================================
@@ -2109,14 +2155,17 @@
             <a href="/" class="nav__logo">
                 <svg class="nav__logo-icon" width="28" height="22" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
+                        <pattern id="marblePattern" patternUnits="userSpaceOnUse" width="56" height="44">
+                            <image href="images/marble.png" width="56" height="44" preserveAspectRatio="xMidYMid slice"/>
+                        </pattern>
                         <mask id="nav-dot-mask">
                             <rect width="56" height="44" fill="white"/>
                             <circle cx="28" cy="22" r="4" fill="black"/>
                         </mask>
                     </defs>
                     <g mask="url(#nav-dot-mask)">
-                        <path d="M0 44L14 0L28 22L14 44H0Z" fill="white"/>
-                        <path d="M28 22L42 0L56 44H42L28 22Z" fill="white"/>
+                        <path d="M0 44L14 0L28 22L14 44H0Z" fill="url(#marblePattern)"/>
+                        <path d="M28 22L42 0L56 44H42L28 22Z" fill="url(#marblePattern)"/>
                     </g>
                 </svg>
                 <div class="nav__logo-group">
