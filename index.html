@@ -641,16 +641,12 @@
         }
 
         .video-banner__tagline-corner {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            z-index: 2;
-            padding: 1.8rem clamp(1.5rem, 4vw, 3rem);
-            text-align: right;
+            display: none;
         }
 
         .video-banner__tagline-mobile {
-            display: none;
+            text-align: right;
+            padding: 0.5rem clamp(1.5rem, 4vw, 3rem) 0.5rem 0;
         }
 
         .video-banner__tagline {
@@ -2038,16 +2034,6 @@
             .hero__badge--adjusted,
             .hero__badge--recovery {
                 display: none;
-            }
-
-            .video-banner__tagline-corner {
-                display: none;
-            }
-
-            .video-banner__tagline-mobile {
-                display: block;
-                text-align: right;
-                padding: 0.5rem 1.5rem 0.5rem 0;
             }
 
             .hero__phone-wrap {
