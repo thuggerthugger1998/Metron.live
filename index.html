@@ -641,12 +641,16 @@
         }
 
         .video-banner__tagline-corner {
-            display: none;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 3;
+            padding: 1.8rem clamp(1.5rem, 4vw, 3rem);
+            text-align: right;
         }
 
         .video-banner__tagline-mobile {
-            text-align: right;
-            padding: 0.5rem clamp(1.5rem, 4vw, 3rem) 0.5rem 0;
+            display: none;
         }
 
         .video-banner__tagline {
@@ -2039,6 +2043,16 @@
             .hero__phone-wrap {
                 justify-content: flex-end !important;
                 padding-right: 1rem;
+            }
+
+            .video-banner__tagline-corner {
+                display: none;
+            }
+
+            .video-banner__tagline-mobile {
+                display: block;
+                text-align: right;
+                padding: 0 1.5rem 0 0;
             }
 
             .video-banner__headline {
