@@ -250,7 +250,7 @@
 
         .quote-hero__text {
             font-family: 'Cardo', serif;
-            font-size: clamp(3.2rem, 7vw, 6rem);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
             font-weight: 700;
             font-style: normal;
             text-align: left;
@@ -310,14 +310,24 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
+            width: 64px;
+            height: 64px;
             opacity: 0;
             animation: scrollCueReveal 1.5s ease-out 5s forwards;
         }
 
         .scroll-cue__heptagon {
+            position: absolute;
+            inset: 0;
             width: 64px;
             height: 64px;
             animation: heptagonSpin 12s linear infinite;
+        }
+
+        .scroll-cue__arrow {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
         }
 
         @keyframes scrollCueReveal {
@@ -2556,16 +2566,15 @@
             <span class="quote-hero__attribution">— Socrates</span>
         </div>
 
-        <!-- Scroll cue: white heptagon with arrow cutout -->
+        <!-- Scroll cue: rotating white heptagon + static arrow -->
         <div class="scroll-cue">
-            <svg class="scroll-cue__heptagon" viewBox="0 0 64 64">
-                <defs>
-                    <mask id="arrow-cutout">
-                        <rect width="64" height="64" fill="white"/>
-                        <path d="M32 22 L32 42 M24 34 L32 42 L40 34" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    </mask>
-                </defs>
-                <polygon points="32,3 54.5,14 61,36 47,57 17,57 3,36 9.5,14" fill="white" mask="url(#arrow-cutout)"/>
+            <!-- Rotating heptagon (regular 7-sided, equal sides) -->
+            <svg class="scroll-cue__heptagon" viewBox="-32 -32 64 64">
+                <polygon points="0,-28 23.4,-17.2 28.8,7.2 14.6,25.8 -14.6,25.8 -28.8,7.2 -23.4,-17.2" fill="white"/>
+            </svg>
+            <!-- Static arrow pointing down -->
+            <svg class="scroll-cue__arrow" viewBox="0 0 64 64">
+                <path d="M32 20 L32 44 M24 36 L32 44 L40 36" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
         </div>
 
