@@ -342,15 +342,13 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Cinematic load sequence — everything starts invisible */
+        /* Cinematic load sequence — nav items fade in with logo */
         .nav--quote-mode .nav__links,
         .nav--quote-mode .nav__cta,
         .nav--quote-mode .nav__hamburger,
-        .nav--quote-mode .nav__logo-subtitle,
-        .nav--quote-mode .nav__logo-tm {
-            opacity: 0 !important;
-            pointer-events: none;
-            transition: opacity 1s ease;
+        .nav--quote-mode .nav__logo-subtitle {
+            opacity: 0;
+            animation: logoFadeIn 2s cubic-bezier(0.25, 0.1, 0.25, 1) 3.5s forwards;
         }
 
         /* Logo: fades in at 3.5s (when quote is fully visible) */
@@ -378,15 +376,7 @@
 
         /* Scroll cue: fades in at 5s (after everything else) */
 
-        /* Nav links reveal on scroll */
-        .nav--quote-mode.nav--reveal-nav .nav__links,
-        .nav--quote-mode.nav--reveal-nav .nav__cta,
-        .nav--quote-mode.nav--reveal-nav .nav__hamburger,
-        .nav--quote-mode.nav--reveal-nav .nav__logo-subtitle,
-        .nav--quote-mode.nav--reveal-nav .nav__logo-tm {
-            opacity: 1 !important;
-            pointer-events: auto;
-        }
+        /* After animation completes, ensure pointer events work */
 
         /* Tagline corner on video */
 
