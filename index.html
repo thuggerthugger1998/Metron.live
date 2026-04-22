@@ -250,17 +250,18 @@
 
         .quote-hero__text {
             font-family: 'Cardo', serif;
-            font-size: clamp(2.2rem, 4.5vw, 4rem);
-            font-weight: 400;
-            font-style: italic;
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            font-weight: 700;
+            font-style: normal;
             text-align: left;
-            max-width: 850px;
-            line-height: 1.35;
-            letter-spacing: 0.01em;
+            max-width: 900px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
             background: url('images/marble.png') center/cover;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 15px rgba(0,0,0,0.3));
             opacity: 0;
             animation: cinematicFadeIn 3s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s forwards;
         }
@@ -289,11 +290,11 @@
 
         .quote-hero__attribution {
             font-family: 'Cardo', serif;
-            font-size: 1.1rem;
-            font-weight: 400;
-            font-style: italic;
-            letter-spacing: 0.05em;
-            margin-top: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: -0.01em;
+            margin-top: 1.5rem;
             text-align: left;
             background: url('images/marble.png') center/cover;
             -webkit-background-clip: text;
@@ -309,48 +310,24 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
             opacity: 0;
-            animation: scrollCueReveal 1s ease-out 4s forwards;
+            animation: scrollCueReveal 1.5s ease-out 5s forwards;
         }
 
         .scroll-cue__heptagon {
-            width: 32px;
-            height: 32px;
+            width: 64px;
+            height: 64px;
             animation: heptagonSpin 12s linear infinite;
-        }
-
-        .scroll-cue__heptagon polygon {
-            fill: none;
-            stroke: white;
-            stroke-width: 1.5;
-        }
-
-        .scroll-cue__arrow {
-            width: 12px;
-            height: 12px;
-            border-right: 2px solid white;
-            border-bottom: 2px solid white;
-            transform: rotate(45deg);
-            animation: arrowBounce 2s ease-in-out infinite;
         }
 
         @keyframes scrollCueReveal {
             from { opacity: 0; }
-            to { opacity: 0.7; }
+            to { opacity: 0.85; }
         }
 
         @keyframes heptagonSpin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
-        }
-
-        @keyframes arrowBounce {
-            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
-            50% { transform: rotate(45deg) translateY(4px); opacity: 1; }
         }
 
         @keyframes cinematicFadeIn {
@@ -1067,7 +1044,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0.7;
+            opacity: 1;
             font-weight: 400;
             font-style: italic;
         }
@@ -2579,12 +2556,17 @@
             <span class="quote-hero__attribution">— Socrates</span>
         </div>
 
-        <!-- Scroll cue -->
+        <!-- Scroll cue: white heptagon with arrow cutout -->
         <div class="scroll-cue">
-            <svg class="scroll-cue__heptagon" viewBox="0 0 20 20">
-                <polygon points="10,1 17,4.5 19,12 14.5,18.5 5.5,18.5 1,12 3,4.5"/>
+            <svg class="scroll-cue__heptagon" viewBox="0 0 64 64">
+                <defs>
+                    <mask id="arrow-cutout">
+                        <rect width="64" height="64" fill="white"/>
+                        <path d="M32 22 L32 42 M24 34 L32 42 L40 34" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </mask>
+                </defs>
+                <polygon points="32,3 54.5,14 61,36 47,57 17,57 3,36 9.5,14" fill="white" mask="url(#arrow-cutout)"/>
             </svg>
-            <div class="scroll-cue__arrow"></div>
         </div>
 
         <!-- Corner tagline -->
