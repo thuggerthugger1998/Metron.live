@@ -807,6 +807,272 @@
             color: var(--accent);
         }
 
+        /* Mega menu trigger */
+        .nav__mega-trigger {
+            font-family: 'Cardo', serif;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--ease);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+        }
+
+        .nav__mega-trigger:hover { color: var(--accent); }
+
+        .nav__mega-trigger.active {
+            color: var(--accent);
+        }
+
+        .nav__mega-trigger.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1.5px;
+            background: var(--accent);
+        }
+
+        /* Caret: small rotating heptagon */
+        .nav__mega-caret {
+            width: 10px;
+            height: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav__mega-caret polygon {
+            fill: currentColor;
+        }
+
+        .nav__mega-trigger.active .nav__mega-caret {
+            transform: rotate(180deg);
+        }
+
+        /* Over-video state */
+        .nav--over-video .nav__mega-trigger {
+            background: url('images/marble.png') center/cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav--over-video .nav__mega-trigger .nav__mega-caret polygon {
+            fill: rgba(210, 195, 175, 0.8);
+        }
+
+        .nav--over-video .nav__mega-trigger:hover,
+        .nav--over-video .nav__mega-trigger.active {
+            opacity: 1;
+        }
+
+        /* Scrolled state */
+        .nav.scrolled .nav__mega-trigger {
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: var(--text-primary) !important;
+        }
+
+        .nav.scrolled .nav__mega-trigger:hover,
+        .nav.scrolled .nav__mega-trigger.active {
+            -webkit-text-fill-color: var(--accent) !important;
+        }
+
+        .nav.scrolled .nav__mega-trigger .nav__mega-caret polygon {
+            fill: var(--text-primary);
+        }
+
+        .nav.scrolled .nav__mega-trigger.active .nav__mega-caret polygon,
+        .nav.scrolled .nav__mega-trigger:hover .nav__mega-caret polygon {
+            fill: var(--accent);
+        }
+
+        /* Cinematic fade — same timing as nav links */
+        .nav--quote-mode .nav__mega-trigger {
+            opacity: 0;
+            animation: logoFadeIn 2s cubic-bezier(0.25, 0.1, 0.25, 1) 3.5s forwards;
+        }
+
+        /* ==========================================
+           MEGA MENU PANEL
+        ========================================== */
+        .mega-panel {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            right: 0;
+            height: 540px;
+            background: url('images/black-marble.jpg') center/cover;
+            z-index: 99;
+            display: none;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .mega-panel.open {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-panel__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 3.5rem 2rem;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Left column: menu items */
+        .mega-panel__items {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+
+        .mega-panel__item {
+            text-decoration: none;
+            display: block;
+            transition: all 0.15s ease;
+        }
+
+        .mega-panel__item:hover .mega-panel__item-title {
+            color: var(--accent);
+        }
+
+        .mega-panel__item-title {
+            font-family: 'Cardo', serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.92);
+            transition: color 0.15s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .mega-panel__item-desc {
+            font-family: 'Cardo', serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.4;
+        }
+
+        /* Right column: featured */
+        .mega-panel__featured {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .mega-panel__featured-title {
+            font-family: 'Cardo', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.92);
+            margin-bottom: 0.75rem;
+        }
+
+        .mega-panel__featured-body {
+            font-family: 'Cardo', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+            max-width: 320px;
+            margin-bottom: 2rem;
+        }
+
+        .mega-panel__featured-heptagon {
+            width: 120px;
+            height: 120px;
+            animation: heptagonSpin 12s linear infinite;
+        }
+
+        .mega-panel__featured-heptagon polygon {
+            fill: rgba(255,255,255,0.08);
+            stroke: rgba(255,255,255,0.2);
+            stroke-width: 0.8;
+        }
+
+        .mega-panel__featured-quote {
+            font-family: 'Cardo', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+            max-width: 360px;
+            margin-bottom: 1.5rem;
+        }
+
+        .mega-panel__featured-author {
+            font-family: 'Cardo', serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        /* Hide mega menu on mobile */
+        @media (max-width: 768px) {
+            .mega-panel { display: none !important; }
+            .nav__mega-trigger { display: none; }
+        }
+
+        /* Mobile accordion items */
+        .mobile-menu__accordion-title {
+            font-family: 'Cardo', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.85rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            transition: all var(--ease);
+        }
+
+        .mobile-menu__accordion-title:hover {
+            background: rgba(245, 166, 35, 0.1);
+            color: var(--accent);
+        }
+
+        .mobile-menu__accordion-body {
+            display: none;
+            padding: 0 1rem 0.5rem 1.5rem;
+        }
+
+        .mobile-menu__accordion-body.open {
+            display: block;
+        }
+
+        .mobile-menu__accordion-body a {
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .mobile-menu__accordion-body a:hover {
+            color: var(--accent);
+        }
+
         .nav__cta {
             padding: 0.55rem 1.1rem;
             font-size: 0.875rem;
@@ -2526,8 +2792,14 @@
                 </div>
             </a>
             <div class="nav__links">
-                <a href="#features" class="nav__link">Features</a>
-                <a href="#how-it-works" class="nav__link">How It Works</a>
+                <button class="nav__mega-trigger" data-panel="platform">
+                    Platform
+                    <svg class="nav__mega-caret" viewBox="-6 -6 12 12"><polygon points="0.0,-4.5 3.5,-2.8 4.4,1.0 1.9,4.0 -1.9,4.0 -4.4,1.0 -3.5,-2.8"/></svg>
+                </button>
+                <button class="nav__mega-trigger" data-panel="athletes">
+                    Athletes
+                    <svg class="nav__mega-caret" viewBox="-6 -6 12 12"><polygon points="0.0,-4.5 3.5,-2.8 4.4,1.0 1.9,4.0 -1.9,4.0 -4.4,1.0 -3.5,-2.8"/></svg>
+                </button>
                 <a href="#compare" class="nav__link">Compare</a>
                 <a href="#faq" class="nav__link">FAQ</a>
             </div>
@@ -2540,9 +2812,85 @@
         </div>
     </nav>
 
+    <!-- Mega Menu Panels -->
+    <div class="mega-panel" id="mega-platform" data-panel="platform">
+        <div class="mega-panel__inner">
+            <div class="mega-panel__items">
+                <a href="#hero" class="mega-panel__item">
+                    <div class="mega-panel__item-title">Overview</div>
+                    <div class="mega-panel__item-desc">Seven pillars. One score. Every day.</div>
+                </a>
+                <a href="#features" class="mega-panel__item" data-idx="0">
+                    <div class="mega-panel__item-title">Plan Engine</div>
+                    <div class="mega-panel__item-desc">90-minute build. 72 workouts. Built from your data.</div>
+                </a>
+                <a href="#features" class="mega-panel__item" data-idx="1">
+                    <div class="mega-panel__item-title">Adaptation Engine</div>
+                    <div class="mega-panel__item-desc">Nightly rewrite based on your recovery.</div>
+                </a>
+                <a href="#features" class="mega-panel__item" data-idx="2">
+                    <div class="mega-panel__item-title">Arete AI Coach</div>
+                    <div class="mega-panel__item-desc">Your history, your plan, your real-time data.</div>
+                </a>
+                <a href="#integrations" class="mega-panel__item">
+                    <div class="mega-panel__item-title">Integrations</div>
+                    <div class="mega-panel__item-desc">Apple Health, Whoop, Oura, Garmin, and more.</div>
+                </a>
+            </div>
+            <div class="mega-panel__featured">
+                <div class="mega-panel__featured-title">The Heptagon</div>
+                <div class="mega-panel__featured-body">Seven pillars. One score. Every day.</div>
+                <svg class="mega-panel__featured-heptagon" viewBox="-32 -32 64 64">
+                    <polygon points="0.0,-28.0 21.9,-17.5 27.3,6.2 12.1,25.2 -12.1,25.2 -27.3,6.2 -21.9,-17.5"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="mega-panel" id="mega-athletes" data-panel="athletes">
+        <div class="mega-panel__inner">
+            <div class="mega-panel__items">
+                <a href="#testimonials" class="mega-panel__item">
+                    <div class="mega-panel__item-title">Endurance</div>
+                    <div class="mega-panel__item-desc">Runners, cyclists, triathletes.</div>
+                </a>
+                <a href="#testimonials" class="mega-panel__item">
+                    <div class="mega-panel__item-title">Strength</div>
+                    <div class="mega-panel__item-desc">Lifters, powerlifters, bodybuilders.</div>
+                </a>
+                <a href="#testimonials" class="mega-panel__item">
+                    <div class="mega-panel__item-title">General fitness</div>
+                    <div class="mega-panel__item-desc">Busy lives, real training.</div>
+                </a>
+                <a href="#testimonials" class="mega-panel__item">
+                    <div class="mega-panel__item-title">Competitive</div>
+                    <div class="mega-panel__item-desc">Teams, coaches, sports programs.</div>
+                </a>
+            </div>
+            <div class="mega-panel__featured">
+                <p class="mega-panel__featured-quote">"No coach I've ever worked with adjusted my taper week the way Metron did."</p>
+                <span class="mega-panel__featured-author">Sarah K., 2:58 marathoner</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu with Accordions -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
+        <div class="mobile-menu__accordion-title" data-accordion="mob-platform">Platform <span>+</span></div>
+        <div class="mobile-menu__accordion-body" id="mob-platform">
+            <a href="#hero">Overview</a>
+            <a href="#features">Plan Engine</a>
+            <a href="#features">Adaptation Engine</a>
+            <a href="#features">Arete AI Coach</a>
+            <a href="#integrations">Integrations</a>
+        </div>
+        <div class="mobile-menu__accordion-title" data-accordion="mob-athletes">Athletes <span>+</span></div>
+        <div class="mobile-menu__accordion-body" id="mob-athletes">
+            <a href="#testimonials">Endurance</a>
+            <a href="#testimonials">Strength</a>
+            <a href="#testimonials">General fitness</a>
+            <a href="#testimonials">Competitive</a>
+        </div>
         <a href="#compare">Compare</a>
         <a href="#faq">FAQ</a>
         <a href="#beta" class="btn btn-primary">Get the App</a>
@@ -2618,7 +2966,7 @@
     <!-- ==========================================
          INTEGRATIONS
     ========================================== -->
-    <section class="integrations">
+    <section class="integrations" id="integrations">
         <!-- Introducing Metron -->
         <div style="text-align: center; padding: 0 2rem 3rem; max-width: 800px; margin: 0 auto;">
             <span class="reveal" style="font-family: 'Cardo', serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1.5rem;">The solution</span>
@@ -3089,19 +3437,116 @@
         }
 
 
-        // 2. MOBILE MENU
+        // 2. MEGA MENU + MOBILE MENU
         // ==========================================
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
 
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
+            closeAllMegaPanels();
         });
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
+        });
+
+        // Mobile accordions
+        document.querySelectorAll('.mobile-menu__accordion-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const bodyId = title.getAttribute('data-accordion');
+                const body = document.getElementById(bodyId);
+                const isOpen = body.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.mobile-menu__accordion-body').forEach(b => b.classList.remove('open'));
+                document.querySelectorAll('.mobile-menu__accordion-title span').forEach(s => s.textContent = '+');
+                if (!isOpen) {
+                    body.classList.add('open');
+                    title.querySelector('span').textContent = '−';
+                }
+            });
+        });
+
+        // Mega menu — desktop
+        const megaTriggers = document.querySelectorAll('.nav__mega-trigger');
+        const megaPanels = document.querySelectorAll('.mega-panel');
+        let megaCloseTimeout = null;
+
+        function closeAllMegaPanels() {
+            megaPanels.forEach(p => p.classList.remove('open'));
+            megaTriggers.forEach(t => t.classList.remove('active'));
+        }
+
+        function openPanel(panelName) {
+            clearTimeout(megaCloseTimeout);
+            closeAllMegaPanels();
+            const panel = document.getElementById('mega-' + panelName);
+            const trigger = document.querySelector('[data-panel="' + panelName + '"]');
+            if (panel && trigger) {
+                // Force reflow for animation
+                panel.style.display = 'flex';
+                panel.offsetHeight;
+                panel.classList.add('open');
+                trigger.classList.add('active');
+            }
+        }
+
+        megaTriggers.forEach(trigger => {
+            const panelName = trigger.getAttribute('data-panel');
+
+            trigger.addEventListener('mouseenter', () => {
+                openPanel(panelName);
+            });
+
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const panel = document.getElementById('mega-' + panelName);
+                if (panel.classList.contains('open')) {
+                    closeAllMegaPanels();
+                } else {
+                    openPanel(panelName);
+                }
+            });
+        });
+
+        megaPanels.forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                clearTimeout(megaCloseTimeout);
+            });
+
+            panel.addEventListener('mouseleave', () => {
+                megaCloseTimeout = setTimeout(closeAllMegaPanels, 150);
+            });
+
+            // Close when clicking a link inside
+            panel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    closeAllMegaPanels();
+                });
+            });
+        });
+
+        // Close on mouseleave from trigger (with delay)
+        document.querySelector('.nav__links')?.addEventListener('mouseleave', () => {
+            megaCloseTimeout = setTimeout(closeAllMegaPanels, 150);
+        });
+
+        document.querySelector('.nav__links')?.addEventListener('mouseenter', () => {
+            clearTimeout(megaCloseTimeout);
+        });
+
+        // ESC closes
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAllMegaPanels();
+        });
+
+        // Click outside closes
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav__mega-trigger') && !e.target.closest('.mega-panel')) {
+                closeAllMegaPanels();
+            }
         });
 
 

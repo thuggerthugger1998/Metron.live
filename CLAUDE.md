@@ -128,4 +128,5 @@ Visual spec for the mega menu:
 - Featured right column: Cardo medium 24px title, Cardo regular 16px body
 - Hover state on items: subtle amber tint on title, smooth 150ms
 - On scroll: nav background becomes marble (existing behavior), panel still opens on black marble
-- Mobile: reverts to existing hamburger pattern — do not build mega menu on mobile this pass
+- Behavior: hover opens, mouseleave closes after 150ms, click also toggles, ESC closes, click outside closes
+- Mobile: keep existing hamburger. In mobile menu, show Platform and Athletes as expandable accordions with left-column items only (no featured column)
