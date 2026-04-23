@@ -913,7 +913,8 @@
             top: var(--nav-height);
             left: 0;
             right: 0;
-            height: 540px;
+            min-height: 620px;
+            height: auto;
             background: rgba(12, 12, 14, 0.72);
             backdrop-filter: blur(32px) saturate(140%);
             -webkit-backdrop-filter: blur(32px) saturate(140%);
@@ -948,6 +949,7 @@
             flex-direction: column;
             gap: 2.5rem;
             justify-content: center;
+            max-width: 480px;
         }
 
         .mega-panel__item {
@@ -971,10 +973,10 @@
 
         .mega-panel__item-desc {
             font-family: 'Cardo', serif;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 400;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.4;
+            color: rgba(255,255,255,0.62);
+            line-height: 1.5;
         }
 
         /* Right column: featured */
@@ -1006,8 +1008,8 @@
         }
 
         .mega-panel__featured-heptagon {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             animation: heptagonSpin 12s linear infinite;
         }
 
@@ -2825,28 +2827,32 @@
             <div class="mega-panel__items">
                 <a href="#hero" class="mega-panel__item">
                     <div class="mega-panel__item-title">Overview</div>
-                    <div class="mega-panel__item-desc">Seven pillars. One score. Every day.</div>
+                    <div class="mega-panel__item-desc">Seven pillars. One AI coach. A unified performance system built on the Greek principle of measure — μέτρον — and the belief that the systems used by professional athletes should be available to everyone.</div>
                 </a>
                 <a href="#features" class="mega-panel__item" data-idx="0">
                     <div class="mega-panel__item-title">Plan Engine</div>
-                    <div class="mega-panel__item-desc">90-minute build. 72 workouts. Built from your data.</div>
+                    <div class="mega-panel__item-desc">90 minutes, eight AI phases, one personalized plan. Training, nutrition, supplements, recovery, sleep, cardio, and body composition — all built from your actual data, with 15 to 25 custom rules tuned to your specific vulnerabilities.</div>
                 </a>
                 <a href="#features" class="mega-panel__item" data-idx="1">
-                    <div class="mega-panel__item-title">Adaptation Engine</div>
-                    <div class="mega-panel__item-desc">Nightly rewrite based on your recovery.</div>
+                    <div class="mega-panel__item-title">Rebalancing Engine</div>
+                    <div class="mega-panel__item-desc">Five tiers of adaptation, from daily to annual. Your plan adjusts overnight based on recovery, training load, sleep, and nutrition. No morning surveys. No “how do you feel today?” — the decision is made before your alarm goes off.</div>
                 </a>
                 <a href="#features" class="mega-panel__item" data-idx="2">
                     <div class="mega-panel__item-title">Arete AI Coach</div>
-                    <div class="mega-panel__item-desc">Your history, your plan, your real-time data.</div>
+                    <div class="mega-panel__item-desc">The God of Performance at the center of your heptagon. Chat-first, with your full training history, real-time wearable data, and the ability to adjust anything you ask. Named for the Greek aretē — excellence as the fulfillment of purpose.</div>
+                </a>
+                <a href="#hero" class="mega-panel__item">
+                    <div class="mega-panel__item-title">The Heptagram</div>
+                    <div class="mega-panel__item-desc">The seven-pointed star at the heart of Metron. Sleep, Training, Nutrition, Recovery, Cardio, Body, Mind — each a pillar, each a guardian, each a score. At a glance, you see the shape of your excellence.</div>
                 </a>
                 <a href="#integrations" class="mega-panel__item">
                     <div class="mega-panel__item-title">Integrations</div>
-                    <div class="mega-panel__item-desc">Apple Health, Whoop, Oura, Garmin, and more.</div>
+                    <div class="mega-panel__item-desc">Apple Health, Whoop, Oura, Garmin, Withings, Strava, and more. The wearables you already own become one intelligent system — not seven dashboards telling you seven different things.</div>
                 </a>
             </div>
             <div class="mega-panel__featured">
-                <div class="mega-panel__featured-title">The Heptagon</div>
-                <div class="mega-panel__featured-body">Seven pillars. One score. Every day.</div>
+                <div class="mega-panel__featured-title">Elite resources, for every athlete.</div>
+                <div class="mega-panel__featured-body">Metron is the sports scientist in your pocket — the systems professional athletes use, made accessible through AI. No team required. No $300 monthly coach required. Just you, your data, and the plan that adapts to it.</div>
                 <svg class="mega-panel__featured-heptagon" viewBox="-32 -32 64 64">
                     <polygon points="0.0,-28.0 21.9,-17.5 27.3,6.2 12.1,25.2 -12.1,25.2 -27.3,6.2 -21.9,-17.5"/>
                 </svg>
@@ -2859,24 +2865,32 @@
             <div class="mega-panel__items">
                 <a href="#testimonials" class="mega-panel__item">
                     <div class="mega-panel__item-title">Endurance</div>
-                    <div class="mega-panel__item-desc">Runners, cyclists, triathletes.</div>
+                    <div class="mega-panel__item-desc">For runners, cyclists, and triathletes. Metron reads your HRV and overnight recovery, then adjusts tomorrow’s intervals, threshold work, and taper. Catches recovery dips before you feel them.</div>
                 </a>
                 <a href="#testimonials" class="mega-panel__item">
                     <div class="mega-panel__item-title">Strength</div>
-                    <div class="mega-panel__item-desc">Lifters, powerlifters, bodybuilders.</div>
+                    <div class="mega-panel__item-desc">For lifters, powerlifters, and bodybuilders. The correlation engine learns your body across weeks — like which lifts move 18% stronger after seven hours of sleep, or which sessions tank when protein drops below target.</div>
                 </a>
                 <a href="#testimonials" class="mega-panel__item">
                     <div class="mega-panel__item-title">General fitness</div>
-                    <div class="mega-panel__item-desc">Busy lives, real training.</div>
+                    <div class="mega-panel__item-desc">For busy lives and real training. One plan that accounts for the night your kid was up at 3 AM, the meeting that ate your lunch, and the fact that you still want to train four times a week.</div>
                 </a>
                 <a href="#testimonials" class="mega-panel__item">
                     <div class="mega-panel__item-title">Competitive</div>
-                    <div class="mega-panel__item-desc">Teams, coaches, sports programs.</div>
+                    <div class="mega-panel__item-desc">For teams, coaches, and sports programs. Shared dashboards, athlete-level plans, and cross-roster correlation analysis. Built for programs that need visibility across twenty athletes, not one.</div>
                 </a>
             </div>
-            <div class="mega-panel__featured">
-                <p class="mega-panel__featured-quote">"No coach I've ever worked with adjusted my taper week the way Metron did."</p>
-                <span class="mega-panel__featured-author">Sarah K., 2:58 marathoner</span>
+            <div class="mega-panel__featured" style="gap: 1.2rem;">
+                <!-- Mini heptagon: endurance athlete profile -->
+                <svg width="120" height="120" viewBox="-32 -32 64 64" style="margin-bottom: 0.5rem;">
+                    <!-- Outer heptagon (full shape) -->
+                    <polygon points="0.0,-28.0 21.9,-17.5 27.3,6.2 12.1,25.2 -12.1,25.2 -27.3,6.2 -21.9,-17.5" fill="none" stroke="rgba(217,119,6,0.3)" stroke-width="0.8"/>
+                    <!-- Inner heptagon (endurance profile: high Cardio+Recovery, mid Training+Sleep, lower Strength+Body) -->
+                    <polygon points="0.0,-19.6 13.1,-10.5 10.9,2.5 10.9,22.7 -10.9,22.7 -10.9,2.5 -15.3,-12.3" fill="rgba(217,119,6,0.15)" stroke="rgba(217,119,6,0.6)" stroke-width="1"/>
+                </svg>
+                <p class="mega-panel__featured-quote">“No coach I’ve ever worked with adjusted my taper week the way Metron did. It caught a recovery dip I hadn’t even noticed yet and cut my Tuesday session before I hurt myself.”</p>
+                <span class="mega-panel__featured-author">Sarah K. — 2:58 marathoner</span>
+                <a href="#testimonials" style="font-family: 'Cardo', serif; font-size: 0.85rem; color: var(--accent); text-decoration: none; margin-top: 0.5rem;">Read more athlete stories →</a>
             </div>
         </div>
     </div>
@@ -2887,8 +2901,9 @@
         <div class="mobile-menu__accordion-body" id="mob-platform">
             <a href="#hero">Overview</a>
             <a href="#features">Plan Engine</a>
-            <a href="#features">Adaptation Engine</a>
+            <a href="#features">Rebalancing Engine</a>
             <a href="#features">Arete AI Coach</a>
+            <a href="#hero">The Heptagram</a>
             <a href="#integrations">Integrations</a>
         </div>
         <div class="mobile-menu__accordion-title" data-accordion="mob-athletes">Athletes <span>+</span></div>
