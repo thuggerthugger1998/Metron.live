@@ -33,11 +33,15 @@ Never introduce a new font. Never use Cardo on the wordmark or Space Grotesk on 
 
 Timing is locked. Do not modify without explicit instruction:
 
-- 0.0s: video montage starts
-- 0.5s: Socrates quote fades in (left-aligned, Cardo 400, letter-spacing 0.25em, marble text fill)
-- 2.0s: "Performance, democratized." + sub fade in (top right)
-- 3.5s: M logo + Metron wordmark + nav tabs fade in together
-- 5.0s: rotating white heptagon scroll cue appears bottom-center
+- 0.0s: video montage starts, all text elements at opacity 0.3 baseline
+- 0.3s: logo + Metron wordmark + nav items + mega triggers fade to full opacity (900ms duration)
+- 0.9s: "Performance, democratized." + sub fade to full opacity (700ms duration)
+- 1.5s: Socrates quote + attribution fade to full opacity (900ms duration)
+- 2.2s: rotating heptagon scroll cue appears (500ms duration)
+
+Total sequence: ~2.7s. Text readable from 0.3s.
+
+sessionStorage flag `metron_hero_seen`: first visit plays full sequence, repeat visits in same session skip animations entirely (body class `.hero-skip-intro`).
 
 Video clip order (11 clips, crossfade ~34s loop):
 cyclist → surfer → sprinter → boy athlete → basketball girl → dribbler → female boxer → punching bag (flipped right) → ballet → soccer (shifted left) → sandbag
